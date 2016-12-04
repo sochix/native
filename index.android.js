@@ -12,12 +12,12 @@ import {
   View
 } from 'react-native';
 
-export default class phone extends Component {
+export default class lesspassnative extends Component {
   render() {
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
-          Welcome to LessPass!
+          Welcome to LessPass Native!
         </Text>
         <Text style={styles.instructions}>
           To get started, edit index.android.js
@@ -50,4 +50,4 @@ const styles = StyleSheet.create({
   },
 });
 
-AppRegistry.registerComponent('phone', () => phone);
+AppRegistry.registerComponent('lesspassnative', () => lesspassnative);

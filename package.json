@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "native iOS and Android LessPass application with react-native",
   "license": "GPLv3",
-  "author": "Guillaume Vincent <guillaume@oslab.fr>",
+  "author": "Guillaume Vincent <guillaume@oslab.fr>, Ilya Pirozhenko <http://sochix.ru>",
   "repository": "lesspass/native",
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",

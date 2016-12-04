@@ -11,6 +11,7 @@ import {
   Text,
   View
 } from 'react-native';
+import { Button } from 'react-native-elements'
 
 export default class phone extends Component {
   render() {
@@ -19,6 +20,10 @@ export default class phone extends Component {
         <Text style={styles.welcome}>
           Welcome to LessPass!
         </Text>
+        <Button
+          raised
+          icon={{name: 'cached'}}
+          title='RAISED WITH ICON' />
         <Text style={styles.instructions}>
           To get started, edit index.android.js
         </Text>

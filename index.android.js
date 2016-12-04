@@ -12,6 +12,7 @@ import {
   View,
   Alert,
   Clipboard,
+  Dimensions,
   KeyboardAvoidingView
 } from 'react-native'
 
@@ -51,8 +52,11 @@ export default class phone extends Component {
   render() {
 
     const onPress = () => {              
-       let encryptedLogin = ''
-       
+      let encryptedLogin = ''
+      
+      if (this.state.login === '' || this.state.masterPassword === '' || this.state.site === '')
+       return
+
       this.setState({ ...this.state, generating: true})
 
       nextFrame()
@@ -70,6 +74,17 @@ export default class phone extends Component {
         })
     }
 
+    const onCopyButtonPress = () => {
+      Clipboard.setString(this.state.generatedPass)
+    }
+
+    const shouldActivateGenerateButton = () => {
+      if (this.state.login == '' || this.state.masterPassword == ''  || !this.state.site == '' ) {
+        return false
+      }
+
+      return true
+    }
 
     return (
       <View style={styles.container}>       
@@ -83,6 +98,7 @@ export default class phone extends Component {
               inputStyle={styles.inputStyle}
               placeholder={'Site'}
               keyboardType={'url'}
+              underlineColorAndroid = 'transparent'
               onChangeText={(value) => this.setState({...this.state, site: value})}
               value={this.state.site}
               />          
@@ -91,36 +107,45 @@ export default class phone extends Component {
               placeholder={'Login'}
               autoCapitalize={'none'}
               autoCorrect ={false}
+              underlineColorAndroid = 'transparent'
               onChangeText={(value) => this.setState({...this.state, login: value})}
               value={this.state.login}
               />          
             <FormInput
+              containerStyle={styles.inputStyleContainer}
               inputStyle={styles.inputStyle}
               placeholder={'Master password'}
               autoCapitalize={'none'}
               autoCorrect = {false}
               secureTextEntry = {true}
+              underlineColorAndroid = 'transparent'
               onChangeText={(value) => this.setState({...this.state, masterPassword: value})}
               value={this.state.masterPassword}
             />
         </View>
         <View style={styles.generatedPassView}>
             <FormInput
+              containerStyle={styles.generatedPassContainer}
               inputStyle={styles.generatedPassInputStyle}
               placeholder={'Generated Pass'}
               editable={false}
+              underlineColorAndroid = 'transparent'
               value={this.state.generatedPass}
-              />            
+              />           
+              <Button
+                onPress = {() => onCopyButtonPress()}
+                icon={{ name: 'content-copy', color: 'grey' }}
+                buttonStyle={styles.copyButtonStyle} />
         </View>
        </KeyboardAvoidingView>
        <View style={styles.generateButtonStyle}>
           <Button   
             onPress = {() => onPress()}      
-            icon={{ name: 'cached', color: 'grey' }}
+            icon={{ name: 'cached', color: 'grey'}}
             color='grey'
-            backgroundColor='white'
-            fontSize={20}
+            backgroundColor='white'            
             borderRadius={7}
+            fontSize = {55}            
             disabled={this.state.generating}
             title={this.state.generating ? 'In process....' : 'GENERATE'} />
           </View>        
@@ -162,8 +187,17 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 7,
     textDecorationLine: 'none',
-    height: 50
+    height: 50    
   },  
+  inputStyleContainer: {    
+    
+  },
+  generatedPassContainer: {
+    flex: 8,
+    padding: 0,
+    margin: 0,
+    backgroundColor: 'transparent'
+  },
   generatedPassInputStyle: {
     paddingLeft: 10,       
     fontSize: 25,    
@@ -173,16 +207,29 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 7,
     textDecorationLine: 'none',
-    height: 50        
+    textDecorationColor: 'transparent',
+    height: 50,     
+    margin: 0
+  },
+  copyButtonStyle: {
+    flex: 1,    
+    height: 50,    
+    borderRadius: 7,
+    backgroundColor: 'white',
+    borderColor: 'gray',
+    borderWidth: 1,
+    marginLeft: 0,
+    paddingLeft: 20    
   },
   generatedPassView: {
     flex: 1,  
-    justifyContent: 'center'    
+    flexDirection: 'row',
+    marginTop: 15       
   },
   generateButtonStyle: {
     flex: 1,
     justifyContent: 'flex-end',
-    paddingBottom: 25    
+    paddingBottom: 25 
   },
   avoidingViewStyle: {
     flex: 2

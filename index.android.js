@@ -13,7 +13,8 @@ import {
   Alert,
   Clipboard,
   Dimensions,
-  KeyboardAvoidingView
+  KeyboardAvoidingView,
+  ToastAndroid
 } from 'react-native'
 
 import nextFrame from 'next-frame';
@@ -51,7 +52,7 @@ export default class phone extends Component {
 
   render() {
 
-    const onPress = () => {              
+    const onGenerateButtonPress = () => {              
       let encryptedLogin = ''
       
       if (this.state.login === '' || this.state.masterPassword === '' || this.state.site === '')
@@ -70,12 +71,15 @@ export default class phone extends Component {
                       generatedPass: generatedPassword,
                       generating: false
                     })  
+
+                    onCopyButtonPress()
                 })
         })
     }
 
     const onCopyButtonPress = () => {
       Clipboard.setString(this.state.generatedPass)
+      ToastAndroid.show('Generated pass is copied to the clipboard', ToastAndroid.SHORT)
     }
 
     const shouldActivateGenerateButton = () => {
@@ -140,7 +144,7 @@ export default class phone extends Component {
        </KeyboardAvoidingView>
        <View style={styles.generateButtonStyle}>
           <Button   
-            onPress = {() => onPress()}      
+            onPress = {() => onGenerateButtonPress()}      
             icon={{ name: 'cached', color: 'grey'}}
             color='grey'
             backgroundColor='white'            

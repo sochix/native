@@ -16,7 +16,7 @@ import {
   KeyboardAvoidingView,
   ToastAndroid
 } from 'react-native'
-
+import SplashScreen from 'react-native-splash-screen'
 import nextFrame from 'next-frame';
 import {
   Button, SocialIcon, Icon, FormLabel, FormInput
@@ -48,6 +48,12 @@ export default class phone extends Component {
           masterPass: '',
           generating: false
         }
+  }
+
+  componentDidMount() {
+      console.log('i was here')
+      // do anything while splash screen keeps, use await to wait for an async task.
+      SplashScreen.hide();
   }
 
   render() {

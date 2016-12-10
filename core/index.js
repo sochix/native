@@ -9,7 +9,8 @@ export function encryptLogin(login, masterPassword, options) {
     var iterations = _options.iterations || 8192;
     var keylen = _options.keylen || 32;
 
-    return new Promise((resolve, reject) => resolve(EvpKDF(masterPassword, login, {keySize: 8, iterations: iterations, hasher: crypto.algo.SHA256 })))    
+    return new Promise((resolve, reject) => resolve(
+        EvpKDF(masterPassword, login, {keySize: 8, iterations: iterations, hasher: crypto.algo.SHA256 })))    
 }
 
 export function renderPassword(encryptedLogin, site, passwordOptions) {

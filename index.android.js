@@ -22,7 +22,7 @@ import {
   Button, SocialIcon, Icon, FormLabel, FormInput
 } from 'react-native-elements'
 
-import {encryptLogin, renderPassword, createFingerprint} from './core/index'
+import generatePassword from './core/v2'
 
 var site = 'lesspass.com';
 var login = 'contact@lesspass.com';
@@ -58,8 +58,7 @@ export default class phone extends Component {
 
   render() {
 
-    const onGenerateButtonPress = () => {              
-      let encryptedLogin = ''
+    const onGenerateButtonPress = () => {                    
       
       if (this.state.login === '' || this.state.masterPassword === '' || this.state.site === '')
        return
@@ -67,19 +66,14 @@ export default class phone extends Component {
       this.setState({ ...this.state, generating: true})
 
       nextFrame()
-        .then(() => encryptLogin(this.state.login, this.state.masterPassword))  
-        .then(result => {          
-          encryptedLogin = result.toString()
+        .then(() => generatePassword(this.state.site, this.state.login, this.state.masterPassword, options))  
+        .then(generatedPassword => {
+            this.setState({ 
+              generatedPass: generatedPassword,
+              generating: false
+            })  
 
-          return renderPassword(encryptedLogin, this.state.site, options)
-                .then(generatedPassword => {
-                    this.setState({ 
-                      generatedPass: generatedPassword,
-                      generating: false
-                    })  
-
-                    onCopyButtonPress()
-                })
+            onCopyButtonPress()
         })
     }
 

@@ -24,17 +24,14 @@ import {
 
 import generatePassword from './core/v2'
 
-var site = 'lesspass.com';
-var login = 'contact@lesspass.com';
-var masterPassword = 'password';
-var options = {
+const options = {
     counter: 1,
-    length: 12,
+    length: 16,
     lowercase: true,
     uppercase: true,
     numbers: true,
     symbols: true,
-    template: 'vcVCns'
+    iterations: 100000
 };    
 
 export default class phone extends Component {
@@ -51,9 +48,8 @@ export default class phone extends Component {
   }
 
   componentDidMount() {
-      console.log('i was here')
       // do anything while splash screen keeps, use await to wait for an async task.
-      SplashScreen.hide();
+      SplashScreen.hide()
   }
 
   render() {

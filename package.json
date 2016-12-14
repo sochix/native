@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "big-integer": "^1.6.17",
-    "crypto-js": "^3.1.8",
+    "crypto-js": "^3.1.9",
     "next-frame": "^0.2.3",
     "react": "15.4.1",
     "react-native": "0.39.2",

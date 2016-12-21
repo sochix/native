@@ -2,7 +2,7 @@
   "name": "lesspass-native",
   "version": "0.1.0",
   "description": "native iOS and Android LessPass application with react-native",
-  "license": "GPLv3",
+  "license": "GPL-3.0",
   "author": "Guillaume Vincent <guillaume@oslab.fr>, Ilya Pirozhenko <http://sochix.ru>",
   "repository": "lesspass/native",
   "scripts": {

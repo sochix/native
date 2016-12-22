@@ -15,7 +15,7 @@
     "next-frame": "^0.2.3",
     "react": "15.4.1",
     "react-native": "0.39.2",
-    "react-native-elements": "^0.7.1",
+    "react-native-elements": "^0.8.0",
     "react-native-splash-screen": "^1.0.9",
     "react-native-vector-icons": "^3.0.0"
   },

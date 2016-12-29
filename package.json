@@ -22,7 +22,7 @@
   "devDependencies": {
     "babel-jest": "17.0.2",
     "babel-preset-react-native": "1.9.1",
-    "jest": "17.0.3",
+    "jest": "18.1.0",
     "jest-react-native": "17.1.0",
     "react-test-renderer": "15.4.1"
   },
